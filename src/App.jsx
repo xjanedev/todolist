@@ -1,4 +1,4 @@
-import { useRef, useReducer } from "react";
+import { useRef, useReducer, useCallback } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import TodoEditor from "./components/TodoEditor";
@@ -57,19 +57,19 @@ function App() {
     });
   };
 
-  const onUpdate = targetId => {
+  const onUpdate = useCallback(targetId => {
     dispatch({
       type: "UPDATE",
       data: targetId,
     });
-  };
+  }, []);
 
-  const onDelete = targetId => {
+  const onDelete = useCallback(targetId => {
     dispatch({
       type: "DELETE",
       data: targetId,
     });
-  };
+  }, []);
 
   return (
     <div className='App'>
